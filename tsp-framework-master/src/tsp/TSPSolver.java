@@ -21,7 +21,6 @@ public class TSPSolver {
 	// -----------------------------
 	// ----- ATTRIBUTS -------------
 	// -----------------------------
-	
 	//Ligne test//
 	/**
 	 * The Solution that will be returned by the program.
