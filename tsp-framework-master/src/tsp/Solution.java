@@ -275,4 +275,26 @@ public class Solution{
 	public String getError() {
 		return m_error;
 	}
+	
+	public boolean estvisite(int v) {
+		boolean res=false;
+		for(int i=0; i<this.m_instance.getNbCities(); i++) {
+			if(m_cities[i]==v) {
+				res=true;
+			}
+		}
+		return res;
+	}
+	
+	public int plusproche(int v) throws Exception{
+		long distance=100000;
+		int k=1;
+		for(int i=1; i<this.getInstance().getNbCities(); i++) {
+			if (this.getInstance().getDistances(v, i)<distance && !this.estvisite(i)) {
+				distance=this.getInstance().getDistances(v,i);
+				k=i;
+			}
+		}
+		return k;
+	}
 }
