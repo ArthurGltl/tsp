@@ -1,5 +1,6 @@
 package tsp;
 
+import tsp.heuristic.Fourmi;
 import tsp.heuristic.PlusProcheVoisin;
 
 /**
@@ -83,9 +84,36 @@ public class TSPSolver {
 			spentTime = System.currentTimeMillis() - startTime;
 		}while(spentTime < (m_timeLimit * 1000 - 100) );
 		
+		
+		/*double distance=100000000.0;
+		int a=0;
+		for(int k=1; k<this.getInstance().getNbCities(); k++) {
+			PlusProcheVoisin PPV = new PlusProcheVoisin(m_instance,"test");
+			PPV.solve(k);
+			if(PPV.getSolution().evaluate()<distance) {
+				distance=PPV.getSolution().evaluate();
+				a=k;
+			}
+		}*/
 		PlusProcheVoisin PPV = new PlusProcheVoisin(m_instance,"test");
 		PPV.solve();
+		double d=PPV.getSolution().evaluate();
+	    PPV.permut();
+	    while(d-PPV.getSolution().evaluate()>0) {
+	    	d=PPV.getSolution().evaluate();
+	    	PPV.permut();
+	    }
 		this.setSolution(PPV.getSolution());
+		
+		/*Fourmi fourmi=new Fourmi(m_instance, "test");
+		fourmi.solve();
+		this.setSolution(fourmi.getSolution());*/
+		
+		
+		
+		
+		
+		
 		
 	}
 
